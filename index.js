@@ -65,8 +65,10 @@ app.use(expressWinston.logger({
     })
   ]
 }));
+
 // 路由
 routes(app);
+
 // 错误请求的日志
 app.use(expressWinston.errorLogger({
   transports: [
@@ -80,12 +82,14 @@ app.use(expressWinston.errorLogger({
   ]
 }));
 
-// error page
+// error page如果程序出错则渲染错误页面
 app.use(function (err, req, res, next) {
   res.render('error', {
     error: err
   });
 });
+
+
 
 if (module.parent) {
   module.exports = app;

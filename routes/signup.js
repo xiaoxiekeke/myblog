@@ -21,6 +21,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
   var avatar = req.files.avatar.path.split(path.sep).pop();
   var password = req.fields.password;
   var repassword = req.fields.repassword;
+  var isAdmin= (req.fields.name=="admin"?"true":"false")
 
   // 校验参数
   try {
@@ -58,7 +59,8 @@ router.post('/', checkNotLogin, function(req, res, next) {
     password: password,
     gender: gender,
     bio: bio,
-    avatar: avatar
+    avatar: avatar,
+    isAdmin:isAdmin
   };
   // 用户信息写入数据库
   UserModel.create(user)
