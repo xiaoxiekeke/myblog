@@ -18,6 +18,19 @@ router.get('/', function(req, res, next) {
     .catch(next);
 });
 
+// GET /user/:userId/remove 删除一名用户
+router.get('/:userId/remove', checkLogin, function(req, res, next) {
+  var userId = req.params.userId;
+  
+  UserModel.delUserById(userId)
+    .then(function () {
+      req.flash('success', '删除用户成功');
+      // 删除成功后跳转到主页
+      res.redirect('/users');
+    })
+    .catch(next);
+});
+
 // // POST /posts 发表一篇文章
 // router.post('/', checkLogin, function(req, res, next) {
 //   var author = req.session.user._id;

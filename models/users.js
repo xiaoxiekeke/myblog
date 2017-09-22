@@ -19,5 +19,12 @@ module.exports = {
     return User
       .find()
       .exec();
+  },
+
+
+  //根据用户id删除用户
+  delUserById:function delUserById(id) {
+    return User.remove({  _id: id }).exec();
   }
+
 };
